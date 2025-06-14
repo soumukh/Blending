@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: prom-stack-coredns
+  namespace: monitoring  # Make sure this matches the namespace where Prometheus is deployed
+  labels:
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      k8s-app: kube-dns   # This should match the label of the CoreDNS service
+  namespaceSelector:
+    matchNames:
+      - kube-system       # CoreDNS runs in the kube-system namespace
+  endpoints:
+    - port: metrics       # Port for CoreDNS metrics (typically 9153 for CoreDNS)
+      interval: 30s        # Scrape interval (adjust as needed)

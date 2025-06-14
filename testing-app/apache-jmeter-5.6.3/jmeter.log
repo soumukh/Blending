@@ -1,0 +1,40 @@
+2025-04-11 02:22:52,686 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2025-04-11 02:22:52,708 INFO o.a.j.JMeter: Loading user properties from: /home/nikhil/Desktop/GOB-app/microservices-demo/testing-app/apache-jmeter-5.6.3/bin/user.properties
+2025-04-11 02:22:52,708 INFO o.a.j.JMeter: Loading system properties from: /home/nikhil/Desktop/GOB-app/microservices-demo/testing-app/apache-jmeter-5.6.3/bin/system.properties
+2025-04-11 02:22:52,714 INFO o.a.j.JMeter: Copyright (c) 1998-2024 The Apache Software Foundation
+2025-04-11 02:22:52,714 INFO o.a.j.JMeter: Version 5.6.3
+2025-04-11 02:22:52,714 INFO o.a.j.JMeter: java.version=17.0.14
+2025-04-11 02:22:52,714 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
+2025-04-11 02:22:52,714 INFO o.a.j.JMeter: os.name=Linux
+2025-04-11 02:22:52,714 INFO o.a.j.JMeter: os.arch=amd64
+2025-04-11 02:22:52,715 INFO o.a.j.JMeter: os.version=6.8.0-57-generic
+2025-04-11 02:22:52,715 INFO o.a.j.JMeter: file.encoding=UTF-8
+2025-04-11 02:22:52,715 INFO o.a.j.JMeter: java.awt.headless=null
+2025-04-11 02:22:52,715 INFO o.a.j.JMeter: Max memory     =1073741824
+2025-04-11 02:22:52,715 INFO o.a.j.JMeter: Available Processors =8
+2025-04-11 02:22:52,724 INFO o.a.j.JMeter: Default Locale=English (EN)
+2025-04-11 02:22:52,725 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2025-04-11 02:22:52,725 INFO o.a.j.JMeter: JMeterHome=/home/nikhil/Desktop/GOB-app/microservices-demo/testing-app/apache-jmeter-5.6.3
+2025-04-11 02:22:52,725 INFO o.a.j.JMeter: user.dir  =/home/nikhil/Desktop/GOB-app/microservices-demo/testing-app/apache-jmeter-5.6.3
+2025-04-11 02:22:52,725 INFO o.a.j.JMeter: PWD       =/home/nikhil/Desktop/GOB-app/microservices-demo/testing-app/apache-jmeter-5.6.3
+2025-04-11 02:22:52,725 INFO o.a.j.JMeter: IP: 127.0.1.1 Name: nikhil-Lenovo-ideapad-330-15IKB FullName: nikhil-Lenovo-ideapad-330-15IKB
+2025-04-11 02:22:52,738 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2025-04-11 02:22:52,956 INFO o.a.j.JMeterGuiLauncher: Setting LAF to: com.github.weisj.darklaf.DarkLaf:com.github.weisj.darklaf.theme.DarculaTheme
+2025-04-11 02:23:08,932 INFO o.a.j.s.FileServer: Default base='/home/nikhil/Desktop/GOB-app/microservices-demo/testing-app/apache-jmeter-5.6.3'
+2025-04-11 02:23:08,937 INFO o.a.j.g.a.Load: Loading file: /home/nikhil/Desktop/GOB-app/microservices-demo/testing-app/apache-jmeter-5.6.3/boutique-test.jmx
+2025-04-11 02:23:08,937 INFO o.a.j.s.FileServer: Set new base='/home/nikhil/Desktop/GOB-app/microservices-demo/testing-app/apache-jmeter-5.6.3'
+2025-04-11 02:23:09,123 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2025-04-11 02:23:09,145 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2025-04-11 02:23:09,147 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2025-04-11 02:23:09,148 INFO o.a.j.s.SaveService: Loading file: /home/nikhil/Desktop/GOB-app/microservices-demo/testing-app/apache-jmeter-5.6.3/boutique-test.jmx
+2025-04-11 02:23:09,174 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-04-11 02:23:09,174 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-04-11 02:23:09,174 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-04-11 02:23:09,174 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-04-11 02:23:09,174 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2025-04-11 02:23:09,174 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2025-04-11 02:23:09,441 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2025-04-11 02:23:09,441 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to UTF-8
+2025-04-11 02:23:09,441 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2025-04-11 02:23:09,441 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2025-04-11 02:23:09,696 INFO o.a.j.s.FileServer: Set new base='/home/nikhil/Desktop/GOB-app/microservices-demo/testing-app/apache-jmeter-5.6.3'
