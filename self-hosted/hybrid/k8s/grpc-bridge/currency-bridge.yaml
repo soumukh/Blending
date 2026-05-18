@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: currency-bridge
+  labels:
+    app: currency-bridge
+    role: grpc-bridge
+    mtp.service: currencyservice
+    mtp.backend: faas
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: currency-bridge
+      role: grpc-bridge
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: currency-bridge
+        role: grpc-bridge
+        mtp.service: currencyservice
+        mtp.backend: faas
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9091"
+    spec:
+      containers:
+      - name: bridge
+        image: localhost:30500/currency-bridge:latest
+        imagePullPolicy: Always
+        env:
+        - name: SERVICE
+          value: currency
+        - name: FUNCTION_URL
+          value: http://gateway.openfaas.svc.cluster.local:8080/function/currency
+        ports:
+        - name: grpc
+          containerPort: 7000
+        - name: metrics
+          containerPort: 9091
+        resources:
+          requests:
+            cpu: 25m
+            memory: 32Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ad-bridge
+  labels:
+    app: ad-bridge
+    role: grpc-bridge
+    mtp.service: adservice
+    mtp.backend: faas
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: ad-bridge
+      role: grpc-bridge
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ad-bridge
+        role: grpc-bridge
+        mtp.service: adservice
+        mtp.backend: faas
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9091"
+    spec:
+      containers:
+      - name: bridge
+        image: localhost:30500/ad-bridge:latest
+        imagePullPolicy: Always
+        env:
+        - name: SERVICE
+          value: ad
+        - name: FUNCTION_URL
+          value: http://ad.openfaas-fn.svc.cluster.local:8080
+        ports:
+        - name: grpc
+          containerPort: 9555
+        - name: metrics
+          containerPort: 9091
+        resources:
+          requests:
+            cpu: 25m
+            memory: 32Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi

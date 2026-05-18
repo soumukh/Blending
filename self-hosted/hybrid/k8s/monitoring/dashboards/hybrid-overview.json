@@ -1,0 +1,68 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "panels": [
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "targets": [
+        {
+          "expr": "sum by (pod) (rate(container_cpu_usage_seconds_total{container!=\"\",container!=\"POD\"}[1m])) * 100",
+          "legendFormat": "{{pod}}"
+        }
+      ],
+      "title": "CPU Usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 2,
+      "targets": [
+        {
+          "expr": "sum by (function_name) (rate(gateway_function_invocation_total[1m]))",
+          "legendFormat": "{{function_name}}"
+        }
+      ],
+      "title": "OpenFaaS Invocation Rate",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "15s",
+  "schemaVersion": 39,
+  "tags": [
+    "mtp",
+    "hybrid"
+  ],
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "title": "MTP Hybrid Overview",
+  "uid": "mtp-hybrid-overview",
+  "version": 1
+}
+

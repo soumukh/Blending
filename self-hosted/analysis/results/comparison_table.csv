@@ -1,0 +1,12 @@
+service,iaas_p99_ms,hybrid_p99_ms,p99_improvement_pct,iaas_cpu_pct,hybrid_cpu_pct,iaas_mem_pct,hybrid_mem_pct,iaas_request_count,hybrid_request_count,iaas_error_pct,hybrid_error_pct,hybrid_deployment,hybrid_backend,data_quality,iaas_to_faas,faas_to_iaas
+frontend,,,,18.5,18.3,,,,,,,iaas,,,0,0
+productcatalogservice,,,,5.9,5.7,,,,,,,iaas,,,0,0
+cartservice,,,,6.0,5.6,,,,,,,iaas,,,0,0
+checkoutservice,,,,1.7,2.0,,,,,,,iaas,,,0,0
+currencyservice,,,,12.0,12.2,,,,,,,hybrid-dynamic,,,3,3
+emailservice,,12.5,,0.7,5.4,,,,,,,hybrid-dynamic,,,0,0
+paymentservice,,,,0.6,0.6,,,,,,,iaas,,,0,0
+shippingservice,,38.0,,1.1,23.5,,,,,,,hybrid-dynamic,,,0,0
+adservice,,57.4,,1.8,25.9,,,,,,0.071,hybrid-dynamic,,,0,0
+recommendationservice,,,,7.1,8.4,,,,,,,iaas,,,0,0
+redis-cart,,,,0.7,0.8,,,,,,,iaas,,,0,0

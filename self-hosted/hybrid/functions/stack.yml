@@ -1,0 +1,29 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  email:
+    lang: dockerfile
+    handler: ./email
+    image: localhost:30500/mtp-openfaas/email:latest
+    environment:
+      SERVICE: email
+  currency:
+    lang: dockerfile
+    handler: ./currency
+    image: localhost:30500/mtp-openfaas/currency:latest
+    environment:
+      SERVICE: currency
+  shipping:
+    lang: dockerfile
+    handler: ./shipping
+    image: localhost:30500/mtp-openfaas/shipping:latest
+    environment:
+      SERVICE: shipping
+  ad:
+    lang: dockerfile
+    handler: ./ad
+    image: localhost:30500/mtp-openfaas/ad:latest
+    environment:
+      SERVICE: ad

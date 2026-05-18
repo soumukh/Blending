@@ -1,0 +1,117 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "panels": [
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "targets": [
+        {
+          "expr": "sum by (pod) (rate(container_cpu_usage_seconds_total{namespace=\"default\",container!=\"\",container!=\"POD\"}[1m])) * 100",
+          "legendFormat": "{{pod}}"
+        }
+      ],
+      "title": "CPU Usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 2,
+      "targets": [
+        {
+          "expr": "100 * sum by (pod) (container_memory_working_set_bytes{namespace=\"default\",container!=\"\",container!=\"POD\"}) / sum by (pod) (container_spec_memory_limit_bytes{namespace=\"default\",container!=\"\",container!=\"POD\"})",
+          "legendFormat": "{{pod}}"
+        }
+      ],
+      "title": "Memory vs Limit",
+      "type": "timeseries"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 3,
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.99, sum by (le, pod) (rate(http_request_duration_seconds_bucket{namespace=\"default\"}[10m]))) * 1000",
+          "legendFormat": "{{pod}}"
+        }
+      ],
+      "title": "p99 HTTP Latency",
+      "type": "timeseries"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 4,
+      "targets": [
+        {
+          "expr": "100 * sum by (pod) (rate(http_requests_total{namespace=\"default\",status=~\"5..\"}[10m])) / sum by (pod) (rate(http_requests_total{namespace=\"default\"}[10m]))",
+          "legendFormat": "{{pod}}"
+        }
+      ],
+      "title": "HTTP Error Rate",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "15s",
+  "schemaVersion": 39,
+  "tags": [
+    "mtp",
+    "phase1"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "title": "MTP Phase 1 Service Overview",
+  "uid": "mtp-phase1-service-overview",
+  "version": 1
+}
+

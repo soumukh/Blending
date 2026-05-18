@@ -1,0 +1,5 @@
+service,faas_to_iaas,iaas_to_faas,high_windows,recovery_windows,logs_with_events,data_quality
+adservice,2,8,2,2,16,switches_seen
+currencyservice,14,19,2,2,14,switches_seen
+emailservice,0,6,2,2,12,switches_seen
+shippingservice,4,10,2,2,16,switches_seen

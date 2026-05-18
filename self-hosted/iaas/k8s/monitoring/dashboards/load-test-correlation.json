@@ -1,0 +1,72 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "panels": [
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "reqps"
+        }
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "targets": [
+        {
+          "expr": "sum(rate(http_requests_total{namespace=\"default\"}[1m]))",
+          "legendFormat": "app requests"
+        },
+        {
+          "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"default\",pod=~\"frontend.*\",container!=\"\",container!=\"POD\"}[1m]))",
+          "legendFormat": "frontend cpu cores"
+        }
+      ],
+      "title": "Load vs Frontend CPU",
+      "type": "timeseries"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms"
+        }
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 2,
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.99, sum by (le, pod) (rate(http_request_duration_seconds_bucket{namespace=\"default\"}[10m]))) * 1000",
+          "legendFormat": "{{pod}}"
+        }
+      ],
+      "title": "p99 Latency During Load",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "15s",
+  "schemaVersion": 39,
+  "tags": [
+    "mtp",
+    "phase1"
+  ],
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "title": "MTP Phase 1 Load Test Correlation",
+  "uid": "mtp-phase1-load-correlation",
+  "version": 1
+}
+

@@ -1,0 +1,5 @@
+Application,Deployment,Load,# Requests,# Fails,Median latency (ms),Average latency (ms)
+GoB,IaaS only,Linear,122282,0,560,775.61
+GoB,IaaS only,Bursty,70260,0,530,748.15
+GoB,Hybrid,Linear,128385,177,420,657.79
+GoB,Hybrid,Bursty,70618,30,530,748.62

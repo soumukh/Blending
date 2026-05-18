@@ -1,0 +1,235 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: email
+  namespace: openfaas-fn
+  labels:
+    app: email
+    faas_function: email
+    com.openfaas.scale.min: "1"
+    com.openfaas.scale.max: "1"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      faas_function: email
+  template:
+    metadata:
+      labels:
+        app: email
+        faas_function: email
+        com.openfaas.scale.min: "1"
+        com.openfaas.scale.max: "1"
+    spec:
+      containers:
+      - name: email
+        image: localhost:30500/mtp-openfaas/email:latest
+        imagePullPolicy: Always
+        env:
+        - name: SERVICE
+          value: email
+        ports:
+        - name: http
+          containerPort: 8080
+        resources:
+          requests:
+            cpu: 25m
+            memory: 32Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: email
+  namespace: openfaas-fn
+  labels:
+    app: email
+    faas_function: email
+    com.openfaas.scale.min: "1"
+    com.openfaas.scale.max: "1"
+spec:
+  selector:
+    faas_function: email
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: currency
+  namespace: openfaas-fn
+  labels:
+    app: currency
+    faas_function: currency
+    com.openfaas.scale.min: "1"
+    com.openfaas.scale.max: "1"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      faas_function: currency
+  template:
+    metadata:
+      labels:
+        app: currency
+        faas_function: currency
+        com.openfaas.scale.min: "1"
+        com.openfaas.scale.max: "1"
+    spec:
+      containers:
+      - name: currency
+        image: localhost:30500/mtp-openfaas/currency:latest
+        imagePullPolicy: Always
+        env:
+        - name: SERVICE
+          value: currency
+        ports:
+        - name: http
+          containerPort: 8080
+        resources:
+          requests:
+            cpu: 25m
+            memory: 32Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: currency
+  namespace: openfaas-fn
+  labels:
+    app: currency
+    faas_function: currency
+    com.openfaas.scale.min: "1"
+    com.openfaas.scale.max: "1"
+spec:
+  selector:
+    faas_function: currency
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shipping
+  namespace: openfaas-fn
+  labels:
+    app: shipping
+    faas_function: shipping
+    com.openfaas.scale.min: "1"
+    com.openfaas.scale.max: "1"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      faas_function: shipping
+  template:
+    metadata:
+      labels:
+        app: shipping
+        faas_function: shipping
+        com.openfaas.scale.min: "1"
+        com.openfaas.scale.max: "1"
+    spec:
+      containers:
+      - name: shipping
+        image: localhost:30500/mtp-openfaas/shipping:latest
+        imagePullPolicy: Always
+        env:
+        - name: SERVICE
+          value: shipping
+        ports:
+        - name: http
+          containerPort: 8080
+        resources:
+          requests:
+            cpu: 25m
+            memory: 32Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shipping
+  namespace: openfaas-fn
+  labels:
+    app: shipping
+    faas_function: shipping
+    com.openfaas.scale.min: "1"
+    com.openfaas.scale.max: "1"
+spec:
+  selector:
+    faas_function: shipping
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ad
+  namespace: openfaas-fn
+  labels:
+    app: ad
+    faas_function: ad
+    com.openfaas.scale.min: "1"
+    com.openfaas.scale.max: "1"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      faas_function: ad
+  template:
+    metadata:
+      labels:
+        app: ad
+        faas_function: ad
+        com.openfaas.scale.min: "1"
+        com.openfaas.scale.max: "1"
+    spec:
+      containers:
+      - name: ad
+        image: localhost:30500/mtp-openfaas/ad:latest
+        imagePullPolicy: Always
+        env:
+        - name: SERVICE
+          value: ad
+        ports:
+        - name: http
+          containerPort: 8080
+        resources:
+          requests:
+            cpu: 25m
+            memory: 64Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ad
+  namespace: openfaas-fn
+  labels:
+    app: ad
+    faas_function: ad
+    com.openfaas.scale.min: "1"
+    com.openfaas.scale.max: "1"
+spec:
+  selector:
+    faas_function: ad
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080

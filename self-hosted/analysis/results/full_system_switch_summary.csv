@@ -1,0 +1,3 @@
+service,iaas_to_faas,faas_to_iaas
+currencyservice,1,4
+shippingservice,2,2

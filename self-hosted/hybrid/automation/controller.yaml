@@ -1,0 +1,102 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: placement-controller
+  namespace: default
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: placement-controller
+rules:
+- apiGroups: ["apps"]
+  resources: ["deployments", "deployments/scale"]
+  verbs: ["get", "list", "watch", "patch", "update"]
+- apiGroups: [""]
+  resources: ["services"]
+  verbs: ["get", "list", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: placement-controller
+subjects:
+- kind: ServiceAccount
+  name: placement-controller
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: placement-controller
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: placement-controller
+  namespace: default
+  labels:
+    app: placement-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: placement-controller
+  template:
+    metadata:
+      labels:
+        app: placement-controller
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9092"
+    spec:
+      serviceAccountName: placement-controller
+      containers:
+      - name: controller
+        image: localhost:30500/placement-controller:latest
+        imagePullPolicy: Always
+        env:
+        - name: PROMETHEUS_URLS
+          value: "http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090,http://prometheus-operated.monitoring.svc.cluster.local:9090"
+        - name: INTERVAL_SECONDS
+          value: "30"
+        - name: CPU_THRESHOLD_PCT
+          value: "30"
+        - name: LOW_WINDOWS_TO_FAAS
+          value: "3"
+        - name: HIGH_WINDOWS_TO_IAAS
+          value: "2"
+        - name: COOLDOWN_SECONDS
+          value: "120"
+        ports:
+        - name: metrics
+          containerPort: 9092
+        volumeMounts:
+        - name: results
+          mountPath: /results
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+      volumes:
+      - name: results
+        hostPath:
+          path: /home/ubuntu/results
+          type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: placement-controller
+  namespace: default
+  labels:
+    app: placement-controller
+spec:
+  selector:
+    app: placement-controller
+  ports:
+  - name: metrics
+    port: 9092
+    targetPort: metrics

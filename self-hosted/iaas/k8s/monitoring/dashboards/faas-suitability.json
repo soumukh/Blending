@@ -1,0 +1,119 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "panels": [
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "none"
+        }
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "targets": [
+        {
+          "expr": "(100 * avg by (pod) (rate(container_cpu_usage_seconds_total{namespace=\"default\",container!=\"\",container!=\"POD\"}[10m])) < bool 30) * (100 * avg by (pod) (container_memory_working_set_bytes{namespace=\"default\",container!=\"\",container!=\"POD\"} / container_spec_memory_limit_bytes{namespace=\"default\",container!=\"\",container!=\"POD\"}) < bool 30)",
+          "legendFormat": "{{pod}}"
+        }
+      ],
+      "title": "Resource Suitability Signal",
+      "type": "stat"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 10
+      },
+      "id": 2,
+      "targets": [
+        {
+          "expr": "sum by (pod) (rate(container_cpu_usage_seconds_total{namespace=\"default\",container!=\"\",container!=\"POD\"}[10m])) * 100",
+          "legendFormat": "{{pod}}"
+        }
+      ],
+      "title": "CPU Threshold: 30%",
+      "type": "timeseries"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 10
+      },
+      "id": 3,
+      "targets": [
+        {
+          "expr": "100 * sum by (pod) (container_memory_working_set_bytes{namespace=\"default\",container!=\"\",container!=\"POD\"}) / sum by (pod) (container_spec_memory_limit_bytes{namespace=\"default\",container!=\"\",container!=\"POD\"})",
+          "legendFormat": "{{pod}}"
+        }
+      ],
+      "title": "Memory Threshold: 30%",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "15s",
+  "schemaVersion": 39,
+  "tags": [
+    "mtp",
+    "phase1"
+  ],
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "title": "MTP Phase 1 FaaS Suitability",
+  "uid": "mtp-phase1-faas-suitability",
+  "version": 1
+}
+

@@ -1,0 +1,5 @@
+phase,load_pattern,deployment,request_count,failure_count,failure_pct,median_ms,avg_ms,p95_ms,p99_ms,req_per_sec
+1,linear,IaaS only,122282,0,0.0,560.0,775.6,2100.0,3100.0,81.5
+1,bursty,IaaS only,70260,0,0.0,530.0,748.2,2200.0,3400.0,46.83
+3,linear,Hybrid,128385,177,0.138,420.0,657.8,1700.0,4300.0,85.56
+3,bursty,Hybrid,70618,30,0.042,530.0,748.6,1900.0,4000.0,47.05
