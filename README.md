@@ -6,5 +6,5 @@ We explore:
 1. A managed cloud platform (using GCP)
 2. A self-hosted open-source platform (Check the directory self-hosted). 
 
-Paper published in IEEE CloudCom 2025 conference (http://www.cloudcom2025.org: https://ieeexplore.ieee.org/abstract/document/11331551)
+Paper published in IEEE CloudCom 2025 conference (https://ieeexplore.ieee.org/abstract/document/11331551)
 
